@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#Have fun using dialog...
+
+#Author: Mayara Gouveia
+#Contato: gb8may@gmail.com
+
+
+clear
+dialog --yesno 'Deseja obter informacoes do sistema?' 0 0
+if [ $? = 0 ]; then
+choice=$( dialog --stdout --menu 'Faca sua escolha:' 0 0 0 1 Rede 2 Disco 3 Memoria ) 
+case $choice in
+	1) ifconfig ;;
+	2) df -h ;;
+	3) free ;;
+esac
+[ $? -eq 1 ] && echo -e "\e[1;33m Botao CANCELAR apertado \e[0m"
+else
+	echo -e "\e[1;33m Ok, Nao exibirei as informacoes! \e[0m"
+fi
